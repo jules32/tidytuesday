@@ -17,12 +17,14 @@ nobel_winner_all_pubs <- readr::read_csv("https://raw.githubusercontent.com/rfor
 
 ## Modifying [@othomantegazza's code](https://github.com/othomantegazza/code-tidytuesday/blob/master/2-20-nobel-prize.R)
 
-```{r pressure, echo=FALSE}
+```{r wrangle and plot, echo=FALSE}
 
+## wrangle
+nobel <- nobel_winners %>% 
+  mutate(age =  prize_year - year(birth_date)) 
 
-p <- 
-  nobel_winners %>% 
-  mutate(age =  prize_year - year(birth_date)) %>% 
+## p <- 
+nobel %>% 
   ggplot(aes(x = category,
              y = age,
              colour = gender,
@@ -61,3 +63,8 @@ dev.off()
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+### @geokaramanis's beautiful curve plots
+https://twitter.com/geokaramanis/status/1128391346597847040
+https://github.com/gkaramanis/tidytuesday/blob/master/week-20/nobel.R
